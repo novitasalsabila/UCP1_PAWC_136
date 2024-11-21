@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoo Management</title>
+    <!-- Add Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1, h2 {
+            color: #4CAF50;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+        }
+
+        .btn-danger {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4 text-center">Zoo Animal Management</h1>
+        
+        <!-- Add Animal Button -->
+        <div class="d-flex justify-content-end mb-3">
+            <a href="/add" class="btn btn-success">Add Animal</a>
+        </div>
+
+        <h2>List of Animals</h2>
+        <ul class="list-group">
+            <% animals.forEach(animal => { %>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong><%= animal.name %></strong> - <%= animal.species %> - Age: <%= animal.age %>
+                    </div>
+                    <div>
+                        <a href="/edit/<%= animal.id %>" class="btn btn-primary btn-sm me-2">Edit</a>
+                        <form action="/delete/<%= animal.id %>" method="POST" style="display:inline;">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </div>
+                </li>
+            <% }); %>
+        </ul>
+    </div>
+
+    <!-- Bootstrap JS (Optional for interactivity, like modals or dropdowns) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
